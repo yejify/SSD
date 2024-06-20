@@ -66,6 +66,7 @@ main{
   margin: auto;
   background-color: #fff;
   overflow: scroll;
+  height: 100vh;
 }
 
 /* 상단베너 */
