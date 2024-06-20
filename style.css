@@ -106,6 +106,7 @@ aside a{
   color: #fdfdfd;
   font-weight : bold;
   margin-left: 30px;
+  cursor: pointer;
 }
 
 /* 선물카드 */
@@ -146,6 +147,10 @@ aside a{
   display: flex;
   gap: 8px;
   margin-bottom: 38px;
+}
+
+.classListItem{
+  cursor: pointer;
 }
 
 .thumbnail{
@@ -228,4 +233,5 @@ color: #FF5862;
   line-height: 50px;
   color: #fff;
   border-radius: 5px;
+  cursor: pointer;
 }
