@@ -1,0 +1,211 @@
+@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+
+/* reset */
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+li,
+button {
+  padding: 0;
+  margin: 0;
+}
+button {
+  border: 0;
+  background: none;
+  font: inherit;
+}
+button:not(:disabled) {
+  cursor: pointer;
+}
+ul,
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+/* 전체 설정 */
+body{
+  background-color:#eee;
+  -ms-overflow-style: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+p{
+  font-size: 10px;
+}
+
+*{
+ font-family: 'NanumSquare';
+}
+
+/* 레이아웃 */
+main{
+  width: 375px;
+  margin: auto;
+  background-color: #fff;
+  overflow: scroll;
+}
+
+/* 상단베너 */
+aside{
+   height: 74px;
+   background-color: #FFF1F2;
+   display: flex;
+   flex-wrap: nowrap;
+   justify-content: space-evenly;
+   align-items: center;
+   margin-bottom: 20px;
+}
+
+aside img{
+  width: 50px;
+}
+
+aside p span{
+  color:  #EC6467;
+  font-size: 15px;
+  font-weight : bold;
+}
+
+aside a{
+  width: 80px;
+  height: 37px;
+  background-color: #EC6467;
+  border-radius: 5px;
+  font-size: 12px;
+  text-align: center;
+  line-height: 37px;
+  color: #fdfdfd;
+  font-weight : bold;
+}
+
+/* 선물카드 */
+.giftCard{
+  width: 345px;
+  margin: 0 auto 30px auto;
+  background-color: #FFF5EC;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-radius: 5px;
+}
+
+.giftCard img{
+  width: 172px;
+  margin: 30px 0 20px 0;
+}
+
+.giftCard h2{
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.giftCard p{
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+/* 클래스리스트 */
+.classList h2{
+  font-size: 16px;
+  margin: 0 15px 15px 15px;
+}
+
+.classList ul{
+  margin-left: 15px;
+  display: flex;
+  gap: 8px;
+  margin-bottom: 38px;
+}
+
+.thumbnail{
+  position: relative;
+  margin-bottom: 8px;
+  height: 136px;
+}
+
+.quick{
+  position: absolute;
+  width: 53px;
+  margin: 8px;
+}
+
+.classImg{
+  width: 156px;
+}
+
+.thumbnail button{
+  position: absolute;
+  width: 20px;
+  height: 18px;
+  background-image: url(./img/empty_heart.png);
+  background-size: cover;
+  top: 8px;
+  right: 8px;
+}
+
+.classListItem>p:nth-child(2){
+ color: #A8A8A8;
+ margin-bottom: 6px;
+}
+
+.classListItem .classTitle {
+  font-size: 11px;
+  margin-bottom: 6px;
+  letter-spacing: -0.2px;
+}
+
+.classListItem .classTop{
+  font-size: 11px;
+  display: flex;
+  color: #6A82EC;
+  gap: 2px;
+  font-weight : bold;
+  margin-bottom: 6px;
+}
+
+.classListItem .classTop span{
+  width: 18px;
+  height: 18px;
+  background-image: url(./img/ic_top30_blue.png);
+  background-size: cover;
+}
+
+.classListItem .classPrice {
+  font-size: 14px;
+  font-weight : bold;
+}
+
+.classListItem .classPrice span{
+color: #FF5862;
+}
+
+.classListItem .tags span{
+  font-size: 10px;
+  padding: 4px 6px;
+  color: #FF5862;
+  background-color: #FFF0F1;
+  border-radius: 2px;
+}
+
+.acceptBtn{
+  display: block;
+  width: 345px;
+  height: 50px;
+  margin: 18px 15px;
+  text-align: center;
+  background-color: #FF5862;
+  line-height: 50px;
+  color: #fff;
+  border-radius: 5px;
+}
