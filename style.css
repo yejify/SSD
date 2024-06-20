@@ -58,7 +58,6 @@ main{
 /* 상단베너 */
 aside{
    height: 74px;
-   height: 74px;
    background-color: #FFF1F2;
    display: flex;
    flex-wrap: nowrap;
@@ -80,7 +79,7 @@ aside p{
 aside p span{
   color:  #EC6467;
   font-size: 13px;
-  font-weight : bold;
+  font-weight : 900;
 }
 
 aside a{
