@@ -1,0 +1,10 @@
+[
+  {"id":1,"category":"cate1", "input":3},
+  {"id":2,"category":"cate2", "input":1},
+  {"id":3,"category":"cate3", "input":2},
+  {"id":4,"category":"cate4", "input":3},
+  {"id":5,"category":"cate5", "input":1},
+  {"id":6,"category":"cate6", "input":2},
+  {"id":7,"category":"cate7", "input":1},
+  {"id":8,"category":"cate8", "input":3}
+]
