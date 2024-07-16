@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/yejify/sssd/static/css/main.92b13512.css",
+    "main.js": "/yejify/sssd/static/js/main.90c43b0c.js",
+    "index.html": "/yejify/sssd/index.html",
+    "main.92b13512.css.map": "/yejify/sssd/static/css/main.92b13512.css.map",
+    "main.90c43b0c.js.map": "/yejify/sssd/static/js/main.90c43b0c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.92b13512.css",
+    "static/js/main.90c43b0c.js"
+  ]
+}
