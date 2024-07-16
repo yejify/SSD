@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     getCategory()
       .then((data) => {
-        setCategories([{ id: '', category: '선택', input: 0 }, ...data]);
+        setCategories([{ id: '', category: '선택', input: [] }, ...data]);
       })
       .catch((error) => {
         console.error('Failed to fetch categories', error);
@@ -25,19 +25,19 @@ function App() {
     if (obj.category) {
       const selected = categories.find(category => category.id === parseInt(obj.category));
       if (selected) {
-        setInputs(Array(selected.input).fill(''));
+        setInputs(selected.input.map(input => ({title:input.title, value:''})));
       }
     }
   };
 
   const handleInputChange = (index, value) => {
     const newInputs = [...inputs];
-    newInputs[index] = value;
+    newInputs[index].value = value;
     setInputs(newInputs);
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  const onSubmit = () => {
+    // e.preventDefault();
     const submittedValues = { ...inputValues, inputs };
     console.log(submittedValues);
     setInputs([]);
@@ -52,12 +52,12 @@ function App() {
           getResult={getResult}
           type='category'
         />
-        {inputs.map((_, index) => (
+        {inputs.map((input, index) => (
           <Input 
             key={index} 
-            name={`input${index + 1}`} 
+            name={input.title} 
             getResult={(obj) => handleInputChange(index, Object.values(obj)[0])} 
-            value={inputs[index] || ''}
+            value={input.value}
           />
         ))}
         <button type='submit'>전송</button>

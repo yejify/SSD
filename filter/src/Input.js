@@ -6,12 +6,15 @@ export default function Input({ name, getResult, value, ...props }) {
   };
 
   return (
-    <input
-      type="text"
-      name={name}
-      onChange={handleChange}
-      value={value}
-      {...props}
-    />
+    <>
+      <p>{name}</p>
+      <input
+        type='text'
+        name={name}
+        onChange={handleChange}
+        value={value}
+        {...props}
+      />
+    </>
   );
 }
