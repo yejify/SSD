@@ -8,6 +8,7 @@ function App() {
   const [categories, setCategories] = useState([]);
   const [inputValues, setInputValues] = useState({});
   const [inputs, setInputs] = useState([]);
+  const [resetSelect, setResetSelect] = useState(false);
 
   useEffect(() => {
     getCategory()
@@ -36,12 +37,13 @@ function App() {
     setInputs(newInputs);
   };
 
-  const onSubmit = () => {
-    // e.preventDefault();
+  const onSubmit = (e) => {
+    e.preventDefault();
     const submittedValues = { ...inputValues, inputs };
     console.log(submittedValues);
     setInputs([]);
     setInputValues({});
+    setResetSelect(!resetSelect);
   };
 
   return (
@@ -51,6 +53,7 @@ function App() {
           options={categories}
           getResult={getResult}
           type='category'
+          reset={resetSelect}
         />
         {inputs.map((input, index) => (
           <Input 
