@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import Select from './Select';
 import Input from './Input';
-import { getCategory, getCommand } from './api/getCategory';
+import { getCategory} from './api/getCategory';
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -20,15 +20,15 @@ function App() {
       });
   }, []);
 
-  useEffect(() => {
-    getCommand()
-      .than((data) => {
-        console.log(data);
-      })
-      .catch((error) => {
-        console.error('Failed to fetch categories', error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   getCommand()
+  //     .than((data) => {
+  //       console.log(data);
+  //     })
+  //     .catch((error) => {
+  //       console.error('Failed to fetch categories', error);
+  //     });
+  // }, []);
 
   const getResult = (obj) => {
     setInputValues({ ...inputValues, ...obj });
