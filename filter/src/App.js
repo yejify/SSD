@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import Select from './Select';
 import Input from './Input';
-import getCategory from './api/getCategory';
+import { getCategory, getCommand } from './api/getCategory';
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -20,13 +20,27 @@ function App() {
       });
   }, []);
 
+  useEffect(() => {
+    getCommand()
+      .than((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error('Failed to fetch categories', error);
+      });
+  }, []);
+
   const getResult = (obj) => {
     setInputValues({ ...inputValues, ...obj });
 
     if (obj.category) {
-      const selected = categories.find(category => category.id === parseInt(obj.category));
+      const selected = categories.find(
+        (category) => category.id === parseInt(obj.category)
+      );
       if (selected) {
-        setInputs(selected.input.map(input => ({title:input.title, value:''})));
+        setInputs(
+          selected.input.map((input) => ({ title: input.title, value: '' }))
+        );
       }
     }
   };
@@ -56,10 +70,10 @@ function App() {
           reset={resetSelect}
         />
         {inputs.map((input, index) => (
-          <Input 
-            key={index} 
-            name={input.title} 
-            getResult={(obj) => handleInputChange(index, Object.values(obj)[0])} 
+          <Input
+            key={index}
+            name={input.title}
+            getResult={(obj) => handleInputChange(index, Object.values(obj)[0])}
             value={input.value}
           />
         ))}

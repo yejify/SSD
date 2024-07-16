@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const getCategory = () => {
+export const getCategory = () => {
   return axios
     .get('../../data/categoryData.json')
     .then((response) => {
@@ -12,4 +12,15 @@ const getCategory = () => {
     });
 };
 
-export default getCategory;
+export const getCommand = () => {
+  return axios
+    .get('https://api2.sssd.co.kr/ssdc/v2/admin/bot/command/list')
+    .then((response) => {
+      return response;
+      // console.log(response.data)
+    })
+    .catch((error) => {
+      console.error(error);
+      return [];
+    });
+};
