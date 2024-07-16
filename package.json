@@ -1,6 +1,6 @@
 {
-  "homepage": "https://github.com/yejify/SSD.git",
-  "name": "SSD",
+  "homepage": "https://github.com/yejify/sssd.git",
+  "name": "sssd",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
