@@ -3,6 +3,7 @@ import './App.css';
 import Select from './Select';
 import Input from './Input';
 import { getCategory } from './api/getCategory';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -51,25 +52,29 @@ function App() {
   };
 
   return (
-    <div className='App'>
-      <form onSubmit={onSubmit}>
-        <Select
-          options={categories}
-          getResult={getResult}
-          type='category'
-          reset={resetSelect}
-        />
-        {inputs.map((input, index) => (
-          <Input
-            key={index}
-            name={input.title}
-            getResult={(obj) => handleInputChange(index, Object.values(obj)[0])}
-            value={input.value}
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <div className='App'>
+        <form onSubmit={onSubmit}>
+          <Select
+            options={categories}
+            getResult={getResult}
+            type='category'
+            reset={resetSelect}
           />
-        ))}
-        <button type='submit'>전송</button>
-      </form>
-    </div>
+          {inputs.map((input, index) => (
+            <Input
+              key={index}
+              name={input.title}
+              getResult={(obj) =>
+                handleInputChange(index, Object.values(obj)[0])
+              }
+              value={input.value}
+            />
+          ))}
+          <button type='submit'>전송</button>
+        </form>
+      </div>
+    </BrowserRouter>
   );
 }
 
