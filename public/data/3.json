@@ -1,0 +1,17 @@
+[
+  {
+    "idx": 31,
+    "command": "금액",
+    "value": "price"
+  },
+  {
+    "idx": 32,
+    "command": "번호",
+    "value": "coupon_idx"
+  },
+  {
+    "idx": 33,
+    "command": "번호",
+    "value": "coupon_idx"
+  }
+]

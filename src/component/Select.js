@@ -1,29 +1,27 @@
 import React, { useEffect, useState } from 'react';
 
 export default function Select({
-  options,
-  initValue,
+  categories,
   getResult,
-  type,
   reset,
   ...props
 }) {
-  const [selectedValue, setSelectedValue] = useState(initValue || '');
+  const [selectedValue, setSelectedValue] = useState('');
 
   useEffect(()=>{
-    setSelectedValue(initValue || '')
-  },[reset, initValue]);
+    setSelectedValue('')
+  },[reset]);
 
   const handleSelect = (e) => {
     setSelectedValue(e.target.value);
-    getResult({ [type]: e.target.value });
+    getResult(e.target.value);
   };
 
   return (
     <select onChange={handleSelect} value={selectedValue} {...props}>
-      {options.map((item) => (
-        <option value={item.id} key={item.id}>
-          {item.category}
+      {categories.map((item) => (
+        <option key={item.idx} value={item.idx}>
+          {item.command}
         </option>
       ))}
     </select>

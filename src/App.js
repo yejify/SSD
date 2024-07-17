@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import Select from './Select';
-import Input from './Input';
-import { getCategory } from './api/getCategory';
-import { BrowserRouter } from 'react-router-dom';
+import Select from './component/Select';
+import Input from './component/Input';
+import { getCategory, getCommand } from './api/getCategory';
 
 function App() {
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState([
+    { idx: 0, command: '선택', value: '' },
+  ]);
   const [inputValues, setInputValues] = useState({});
   const [inputs, setInputs] = useState([]);
   const [resetSelect, setResetSelect] = useState(false);
@@ -14,7 +15,8 @@ function App() {
   useEffect(() => {
     getCategory()
       .then((data) => {
-        setCategories([{ id: '', category: '선택', input: [] }, ...data]);
+        console.log(data);
+        setCategories([{ idx: 0, command: '선택', value: '' }, ...data]);
       })
       .catch((error) => {
         console.error('Failed to fetch categories', error);
@@ -22,18 +24,13 @@ function App() {
   }, []);
 
   const getResult = (obj) => {
-    setInputValues({ ...inputValues, ...obj });
-
-    if (obj.category) {
-      const selected = categories.find(
-        (category) => category.id === parseInt(obj.category)
-      );
-      if (selected) {
-        setInputs(
-          selected.input.map((input) => ({ title: input.title, value: '' }))
-        );
-      }
-    }
+    getCommand(obj)
+    .then((data) => {
+      setInputs(data);
+    })
+    .catch((error) => {
+      console.error('Failed to fetch categories', error);
+    });
   };
 
   const handleInputChange = (index, value) => {
@@ -52,29 +49,24 @@ function App() {
   };
 
   return (
-    <BrowserRouter basename={process.env.PUBLIC_URL}>
-      <div className='App'>
-        <form onSubmit={onSubmit}>
-          <Select
-            options={categories}
-            getResult={getResult}
-            type='category'
-            reset={resetSelect}
+    <div className='App'>
+      <form onSubmit={onSubmit}>
+        <Select
+          categories={categories}
+          getResult={getResult}
+          reset={resetSelect}
+        />
+        {inputs.map((input, index) => (
+          <Input
+            key={index}
+            name={input.command}
+            getResult={(obj) => handleInputChange(index, Object.values(obj)[0])}
+            value={input.value}
           />
-          {inputs.map((input, index) => (
-            <Input
-              key={index}
-              name={input.title}
-              getResult={(obj) =>
-                handleInputChange(index, Object.values(obj)[0])
-              }
-              value={input.value}
-            />
-          ))}
-          <button type='submit'>전송</button>
-        </form>
-      </div>
-    </BrowserRouter>
+        ))}
+        <button type='submit'>전송</button>
+      </form>
+    </div>
   );
 }
 
