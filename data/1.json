@@ -1,0 +1,12 @@
+[
+  {
+    "idx": 11,
+    "command": "쿠폰금액",
+    "value": "price"
+  },
+  {
+    "idx": 12,
+    "command": "쿠폰번호",
+    "value": "coupon_idx"
+  }
+]
