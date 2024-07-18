@@ -2,9 +2,10 @@ import axios from 'axios';
 
 export const getCategory = () => {
   return axios
-    .get('../../data/categoryData.json')
+    .get('/ssdc/v2/admin/bot/command/list')
     .then((response) => {
-      return response.data;
+      // console.log(response.data.data)
+      return response.data.data;
     })
     .catch((error) => {
       console.error(error);
@@ -13,11 +14,12 @@ export const getCategory = () => {
 };
 
 export const getCommand = (obj) => {
-  const idx = '../../data/'+obj+'.json';
+  const idx = '/ssdc/v2/admin/bot/command/list/' + obj;
   return axios
   .get(idx)
     .then((response) => {
-      return response.data;
+      // console.log(response.data.data)
+      return response.data.data;
     })
     .catch((error) => {
       console.error(error);

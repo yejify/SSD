@@ -1,8 +1,9 @@
 {
-  "homepage": "https://github.com/yejify/sssd",
+  "homepage": "https://github.com/sssd",
   "name": "sssd",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://api2.sssd.co.kr",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
