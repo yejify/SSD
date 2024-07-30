@@ -1,69 +1,28 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
-import Select from './component/Select';
-import Input from './component/Input';
-import { getCategory, getCommand } from './api/getCategory';
+import InputList from './component/Input';
 
 function App() {
-  const [categories, setCategories] = useState([
-    { idx: 0, command: '선택', value: '' },
-  ]);
-  const [inputValues, setInputValues] = useState({});
-  const [inputs, setInputs] = useState([]);
-  const [resetSelect, setResetSelect] = useState(false);
+  const [inputList, setInputList]=useState([0])
 
-  useEffect(() => {
-    getCategory()
-      .then((data) => {
-        console.log(data);
-        setCategories([{ idx: 0, command: '선택', value: '' }, ...data]);
-      })
-      .catch((error) => {
-        console.error('Failed to fetch categories', error);
-      });
-  }, []);
-
-  const getResult = (obj) => {
-    getCommand(obj)
-    .then((data) => {
-      setInputs(data);
-    })
-    .catch((error) => {
-      console.error('Failed to fetch categories', error);
-    });
-  };
-
-  const handleInputChange = (index, value) => {
-    const newInputs = [...inputs];
-    newInputs[index].value = value;
-    setInputs(newInputs);
-  };
+const addInput =()=>{
+  let countInput = [...inputList]
+  let counter = countInput.slice(-1)[0]
+  counter += 1
+  countInput.push(counter)
+  setInputList(countInput)
+}
 
   const onSubmit = (e) => {
     e.preventDefault();
-    const submittedValues = { ...inputValues, inputs };
-    console.log(submittedValues);
-    setInputs([]);
-    setInputValues({});
-    setResetSelect(!resetSelect);
+    console.log();
   };
 
   return (
     <div className='App'>
       <form onSubmit={onSubmit}>
-        <Select
-          categories={categories}
-          getResult={getResult}
-          reset={resetSelect}
-        />
-        {inputs.map((input, index) => (
-          <Input
-            key={index}
-            name={input.command}
-            getResult={(obj) => handleInputChange(index, Object.values(obj)[0])}
-            value={input.value}
-          />
-        ))}
+        <InputList inputList={inputList} setInputList={setInputList}/>
+        <button onClick={addInput}>추가</button>
         <button type='submit'>전송</button>
       </form>
     </div>

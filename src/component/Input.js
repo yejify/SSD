@@ -1,20 +1,21 @@
 import React from 'react';
 
-export default function Input({ name, getResult, value, ...props }) {
-  const handleChange = (e) => {
-    getResult({ [name]: e.target.value });
-  };
-
+export default function InputList({inputList, setInputList}) {
+  console.log(inputList)
+  const removeInput = (index)=>{
+    setInputList(inputList.filter((_, i)=>i !==index))
+  }
   return (
     <>
-      <p>{name}</p>
-      <input
-        type='text'
-        name={name}
-        onChange={handleChange}
-        value={value}
-        {...props}
-      />
+    {inputList.map((item, i)=>(
+      <div className='inputDiv' key={i}>
+        <h3>IMAGE</h3>
+        <input type='text' placeholder='이미지 링크를 입력해주세요'/>
+        <h3>URL</h3>
+        <input type='text' placeholder='링크를 입력해주세요'/>
+        <button onClick={()=>removeInput(i)}>제거</button>
+      </div>
+    ))}
     </>
   );
 }
