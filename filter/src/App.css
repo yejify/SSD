@@ -1,0 +1,11 @@
+
+.App {
+  text-align: center;
+}
+
+form{
+  display: inline-grid;
+  align-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
