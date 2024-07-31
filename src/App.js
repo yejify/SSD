@@ -34,7 +34,7 @@ function App() {
   const onGenerate = () => {
     const htmlContent = generateHTMLContent(inputList);
     downloadHTMLFile(htmlContent, 'generated.html');
-    setInputList(initialInputState); // 상태를 초기 상태로 리셋
+    setInputList(initialInputState);
   };
 
   return (
