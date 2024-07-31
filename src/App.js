@@ -1,7 +1,8 @@
 /* eslint-disable no-undef */
 import { useState } from 'react';
 import './App.css';
-import InputList from './component/Input';
+import InputList from './components/InputList';
+import { generateHTMLContent, downloadHTMLFile } from './utils/htmlUtils';
 
 function App() {
   const initialInputState = [{ id: 0, image: '', url: '' }];
@@ -30,15 +31,15 @@ function App() {
     );
   };
 
-  const onSubmit = (e) => {
-    e.preventDefault();
-    console.log(inputList);
-    setInputList(initialInputState);
+  const onGenerate = () => {
+    const htmlContent = generateHTMLContent(inputList);
+    downloadHTMLFile(htmlContent, 'generated.html');
+    setInputList(initialInputState); // 상태를 초기 상태로 리셋
   };
 
   return (
     <div className='App'>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={(e) => e.preventDefault()}>
         <InputList
           inputList={inputList}
           removeInput={removeInput}
@@ -47,7 +48,9 @@ function App() {
         <button type='button' onClick={addInput}>
           추가
         </button>
-        <button type='submit'>전송</button>
+        <button type='button' onClick={onGenerate}>
+          생성 및 다운로드
+        </button>
       </form>
     </div>
   );
