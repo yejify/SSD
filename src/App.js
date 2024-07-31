@@ -1,49 +1,59 @@
-/* eslint-disable no-undef */
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import InputList from './components/InputList';
 import { generateHTMLContent, downloadHTMLFile } from './utils/htmlUtils';
 
-function App() {
-  const initialInputState = [{ id: 0, image: '', url: '' }];
-  const [inputList, setInputList] = useState(initialInputState);
+const App = () => {
+  const initialInputState = [
+    {
+      id: 0,
+      image: '',
+      url: '',
+      checked: false,
+      additionalImage: '',
+      additionalUrl: '',
+    },
+  ];
+  const [inputFields, setInputFields] = useState(initialInputState);
 
+  const handleInputChange = (id, field, value) => {
+    setInputFields((prevFields) =>
+      prevFields.map((fieldItem) =>
+        fieldItem.id === id ? { ...fieldItem, [field]: value } : fieldItem
+      )
+    );
+  };
   const addInput = () => {
-    setInputList((prevList) => [
+    setInputFields((prevList) => [
       ...prevList,
       {
+        checked: false,
         id: prevList.length ? prevList[prevList.length - 1].id + 1 : 0,
         image: '',
         url: '',
       },
     ]);
   };
-
   const removeInput = (id) => {
-    setInputList((prevList) => prevList.filter((item) => item.id !== id));
-  };
-
-  const handleInputChange = (id, field, value) => {
-    setInputList((prevList) =>
-      prevList.map((item) =>
-        item.id === id ? { ...item, [field]: value } : item
-      )
+    setInputFields((prevFields) =>
+      prevFields.filter((fieldItem) => fieldItem.id !== id)
     );
   };
 
   const onGenerate = () => {
-    const htmlContent = generateHTMLContent(inputList);
+    console.log(inputFields);
+    const htmlContent = generateHTMLContent(inputFields);
     downloadHTMLFile(htmlContent, 'generated.html');
-    setInputList(initialInputState);
+    setInputFields(initialInputState);
   };
 
   return (
     <div className='App'>
       <form onSubmit={(e) => e.preventDefault()}>
         <InputList
-          inputList={inputList}
-          removeInput={removeInput}
+          inputList={inputFields}
           handleInputChange={handleInputChange}
+          removeInput={removeInput}
         />
         <button type='button' onClick={addInput}>
           추가
@@ -54,6 +64,6 @@ function App() {
       </form>
     </div>
   );
-}
+};
 
 export default App;

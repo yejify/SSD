@@ -27,23 +27,55 @@ export const generateHTMLContent = (data) => {
 `;
 
   data.forEach((item) => {
-    if (item.url) {
-      htmlContent += `
+    // 추가 이미지가 있는 경우
+    if (item.additionalImage) {
+      htmlContent += '<div style="display: flex; margin: 0px;">';
+
+      if (item.url) {
+        htmlContent += `
         <a href="${item.url}" target="_parent">
           <img src="${item.image}" style="width: 100%; object-fit: contain;">
         </a>
       `;
-    } else {
-      htmlContent += `
+      } else {
+        htmlContent += `
         <img src="${item.image}" style="width: 100%; object-fit: contain;">
       `;
+      }
+
+      if (item.additionalUrl) {
+        htmlContent += `
+        <a href="${item.additionalUrl}" target="_parent">
+          <img src="${item.additionalImage}" style="width: 100%; object-fit: contain;">
+        </a>
+      `;
+      } else {
+        htmlContent += `
+        <img src="${item.additionalImage}" style="width: 100%; object-fit: contain;">
+      `;
+      }
+
+      htmlContent += '</div>';
+    } else {
+      // 추가 이미지가 없는 경우
+      if (item.url) {
+        htmlContent += `
+        <a href="${item.url}" target="_parent">
+          <img src="${item.image}" style="width: 100%; object-fit: contain;">
+        </a>
+      `;
+      } else {
+        htmlContent += `
+        <img src="${item.image}" style="width: 100%; object-fit: contain;">
+      `;
+      }
     }
   });
 
   htmlContent += `
-      </div>
     </div>
   </div>
+</div>
 </body>
 </html>
 `;
